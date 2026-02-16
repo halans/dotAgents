@@ -159,4 +159,4 @@ When creating new agents or skills:
 
 ## License
 
-(Add your license information here)
+MIT
