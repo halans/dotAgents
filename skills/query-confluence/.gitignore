@@ -1,0 +1,51 @@
+# Environment and Credential Files
+.env
+.env.local
+.env.confluence
+.env.jira
+.env.atlassian
+.env.*.local
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+dist/
+build/
+
+# Confluence Downloads (default output directory)
+confluence_docs/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Temporary Files
+*.tmp
+*.bak
+*.backup
+
+# Test Output
+test_output/
+temp/
+
+# Generated Diagrams (if you keep source .mmd files in git)
+# *.png
+# *.svg
+# (Uncomment if you want to ignore generated diagram images)
+
+# Mark CLI temporary files
+.mark-*
