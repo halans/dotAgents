@@ -1,0 +1,22 @@
+{
+  "name": "hello-world-mcpb",
+  "version": "1.0.0",
+  "description": "Hello World MCP Bundle - demonstrates basic MCPB structure",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  },
+  "keywords": [
+    "mcp",
+    "mcpb",
+    "model-context-protocol",
+    "example"
+  ],
+  "author": "MCPB Examples",
+  "license": "MIT"
+}
