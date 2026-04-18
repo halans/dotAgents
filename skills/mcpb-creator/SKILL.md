@@ -1,4 +1,3 @@
-```skill
 ---
 name: mcpb-creator
 description: Guide for creating Model Context Protocol Bundles (MCPB). Use when users want to build MCP servers as distributable bundles with proper manifest structure, tool definitions, security measures, and best practices.
@@ -392,4 +391,3 @@ Validates manifest.json structure and required fields.
 - Must return object with `content` array
 - Each content item needs `type` and `text` fields
 - Only write JSON-RPC to stdout, logs to stderr
-```
