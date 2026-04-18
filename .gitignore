@@ -1,2 +1,6 @@
 /.DS_Store
 .github
+/summaries
+.playwright-mcp
+skills/query-confluence/scripts/__pycache__
+agents/article-summarizer/.env
