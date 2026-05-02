@@ -1,0 +1,79 @@
+{
+  "name": "skill-metadata-generator",
+  "version": "1.0.0",
+  "description": "Generates a structured metadata.json file for an existing skill directory. Use when you need to create or update a skill's machine-readable metadata for agent discovery, compatibility declarations, and capability descriptions. Triggers on requests like \"generate metadata for this skill\", \"create a metadata.json\", \"add metadata to my skill\", or any time a skill directory lacks a metadata.json or has one that needs updating.",
+  "license": "MIT",
+  "author": "JJ Halans",
+  "repository": "https://github.com/halans/dotAgents",
+  "languages": ["en"],
+  "compatibility": {
+    "minCliVersion": "0.1.0",
+    "agents": ["claude-code", "cursor", "windsurf", "generic"]
+  },
+  "entryPoint": "SKILL.md",
+  "references": [
+    "references/metadata-schema.md"
+  ],
+  "triggers": [
+    "generate metadata for this skill",
+    "create a metadata.json",
+    "add metadata to my skill",
+    "update skill metadata",
+    "this skill is missing metadata.json",
+    "write metadata.json for a skill",
+    "make my skill discoverable",
+    "add discovery metadata",
+    "generate skill manifest",
+    "create metadata for agent discovery",
+    "document this skill's inputs and outputs"
+  ],
+  "tags": [
+    "skill-metadata",
+    "agent-discovery",
+    "metadata-generation",
+    "skill-authoring",
+    "json-schema"
+  ],
+  "usage": {
+    "prompt": "Read the target skill's SKILL.md (frontmatter and body), list its references/, scripts/, assets/, and templates/ directories, then derive all metadata fields per references/metadata-schema.md. Preserve any existing metadata.json fields that cannot be re-derived (license, author, repository, version). Write metadata.json to the skill root — do not modify any other files.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "skillPath": {
+          "type": "string",
+          "description": "Path to the skill directory containing SKILL.md."
+        }
+      },
+      "required": ["skillPath"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "metadataPath": {
+          "type": "string",
+          "description": "Path to the written metadata.json file."
+        },
+        "fieldsPopulated": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of fields that were successfully populated."
+        },
+        "fieldsNull": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of fields left null because no source data was available."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "tools": ["read", "write", "glob"],
+    "packages": [],
+    "external": []
+  },
+  "bundled": {
+    "scripts": [],
+    "assets": [],
+    "templates": []
+  }
+}

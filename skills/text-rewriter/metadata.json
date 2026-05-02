@@ -1,0 +1,77 @@
+{
+  "name": "text-rewriter",
+  "version": "1.0.0",
+  "description": "Rewrites text to remove AI-generated linguistic patterns, puffery, and formulaic language. Use when the user wants to rewrite, clean up, or de-AI any text — from pasted input or files.",
+  "license": "MIT",
+  "author": "JJ Halans",
+  "repository": "https://github.com/halans/dotAgents",
+  "languages": ["en"],
+  "compatibility": {
+    "minCliVersion": "0.1.0",
+    "agents": ["claude-code", "cursor", "windsurf", "generic"]
+  },
+  "entryPoint": "SKILL.md",
+  "references": [
+    "references/ai-writing-guide.md"
+  ],
+  "triggers": [
+    "rewrite this text",
+    "clean up this writing",
+    "remove AI patterns",
+    "de-AI this text",
+    "make this sound less AI",
+    "remove puffery",
+    "rewrite to sound more human",
+    "this sounds too AI-generated",
+    "remove formulaic language",
+    "clean up this copy",
+    "fix AI writing patterns",
+    "rewrite this file"
+  ],
+  "tags": [
+    "text-rewriting",
+    "ai-detection",
+    "writing-quality",
+    "content-editing",
+    "style-cleanup"
+  ],
+  "usage": {
+    "prompt": "Accept text (pasted or file path), load references/ai-writing-guide.md, apply all rules to rewrite for style without changing meaning, then save to a -rewritten output file and display a summary of changes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text pasted directly by the user to rewrite."
+        },
+        "filePath": {
+          "type": "string",
+          "description": "Path to a file whose contents should be rewritten."
+        }
+      }
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "outputFile": {
+          "type": "string",
+          "description": "Path to the saved rewritten file (same directory as input, with -rewritten before the extension)."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Brief summary of patterns removed and notable changes made."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "tools": ["read", "edit", "search"],
+    "packages": [],
+    "external": []
+  },
+  "bundled": {
+    "scripts": [],
+    "assets": [],
+    "templates": []
+  }
+}

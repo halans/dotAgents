@@ -1,0 +1,90 @@
+{
+  "name": "agent-creator",
+  "version": "1.0.0",
+  "description": "Guide for creating custom agents. Use when users want to create a new agent (or update an existing agent) that operates as a specialized AI Agent instance with a defined persona, tool access, and optional skill references. Agents are defined in .agent.md files with YAML frontmatter and a system prompt body.",
+  "license": "MIT",
+  "author": "JJ Halans",
+  "repository": "https://github.com/halans/dotAgents",
+  "languages": ["en"],
+  "compatibility": {
+    "minCliVersion": "0.1.0",
+    "agents": ["claude-code", "cursor", "windsurf", "generic"]
+  },
+  "entryPoint": "SKILL.md",
+  "references": [
+    "references/agent-patterns.md",
+    "references/tool-selection-guide.md"
+  ],
+  "triggers": [
+    "create a new agent",
+    "build an agent",
+    "write an agent",
+    "make an agent",
+    "update an existing agent",
+    "add a new agent",
+    "design an agent",
+    "agent definition",
+    "agent.md file",
+    ".agent.md",
+    "agent system prompt",
+    "agent persona",
+    "agent tool access",
+    "what tools should my agent have",
+    "how do I structure an agent"
+  ],
+  "tags": [
+    "agent-creation",
+    "agent-design",
+    "system-prompt",
+    "tool-selection",
+    "ai-agents",
+    "dotagents"
+  ],
+  "usage": {
+    "prompt": "Guide the user through defining an agent's purpose, selecting its minimal tool set, scaffolding the directory with init_agent.py, writing the system prompt, and validating with quick_validate.py. Reference agent-patterns.md and tool-selection-guide.md as needed.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "agentName": {
+          "type": "string",
+          "description": "Kebab-case name for the new agent (max 64 chars)."
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Description of what the agent should do end-to-end."
+        },
+        "outputPath": {
+          "type": "string",
+          "description": "Directory where the agent folder should be created. Defaults to agents/."
+        }
+      },
+      "required": ["agentName", "purpose"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "agentFile": {
+          "type": "string",
+          "description": "Path to the generated .agent.md file."
+        },
+        "validationResult": {
+          "type": "string",
+          "description": "Output of quick_validate.py confirming the agent is valid."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "tools": ["bash"],
+    "packages": [],
+    "external": []
+  },
+  "bundled": {
+    "scripts": [
+      "scripts/init_agent.py",
+      "scripts/quick_validate.py"
+    ],
+    "assets": [],
+    "templates": []
+  }
+}

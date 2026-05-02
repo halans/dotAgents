@@ -1,0 +1,69 @@
+{
+  "name": "article-title-summarizer",
+  "version": "1.0.0",
+  "description": "Creates coherent summary paragraphs from lists of article titles. Use when the user provides multiple article titles and requests a summary, overview paragraph, or narrative synthesis of the content themes. Ideal for literature reviews, content aggregation, research summaries, or generating descriptive text from reading lists.",
+  "license": "MIT",
+  "author": "JJ Halans",
+  "repository": "https://github.com/halans/dotAgents",
+  "languages": ["en"],
+  "compatibility": {
+    "minCliVersion": "0.1.0",
+    "agents": ["claude-code", "cursor", "windsurf", "generic"]
+  },
+  "entryPoint": "SKILL.md",
+  "references": [],
+  "triggers": [
+    "summarize article titles",
+    "generate a summary from titles",
+    "create an overview paragraph",
+    "synthesize reading list",
+    "narrative summary of articles",
+    "what are these articles about",
+    "write a paragraph about these titles",
+    "literature review from titles",
+    "content aggregation summary",
+    "research summary from headlines",
+    "describe this collection of articles",
+    "turn these titles into a paragraph"
+  ],
+  "tags": [
+    "article-summarization",
+    "content-synthesis",
+    "reading-list",
+    "theme-extraction",
+    "narrative-generation"
+  ],
+  "usage": {
+    "prompt": "Given a list of article titles, identify recurring themes and produce a single neutral, present-tense paragraph (3–6 sentences) that synthesizes the dominant topics. Prepend YAML frontmatter containing a kebab-case `tags` list derived from the identified themes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "titles": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of article titles to synthesize into a summary paragraph."
+        }
+      },
+      "required": ["titles"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "markdown": {
+          "type": "string",
+          "description": "A markdown string with YAML frontmatter (tags list) followed by a single summary paragraph."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "tools": [],
+    "packages": [],
+    "external": []
+  },
+  "bundled": {
+    "scripts": [],
+    "assets": [],
+    "templates": []
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "name": "blog-cross-linker",
+  "version": "1.0.0",
+  "description": "Reads a set of blog posts and adds inline cross-links between them — linking existing text in one post to another when that text directly references the subject of the other. Use this skill whenever the user asks to cross-link blog posts, add internal links between articles, link posts to each other, improve blog navigation with internal links, find cross-linking opportunities, or says things like \"link these to each other\", \"which posts can reference each other?\", or \"add links between my articles\". Always invoke for any request about internal blog linking, even phrased casually. Never add \"See also\" or \"Related posts\" sections — inline links only.",
+  "license": "MIT",
+  "author": "JJ Halans",
+  "repository": "https://github.com/halans/dotAgents",
+  "languages": ["en"],
+  "compatibility": {
+    "minCliVersion": "0.1.0",
+    "agents": ["claude-code", "cursor", "windsurf", "generic"]
+  },
+  "entryPoint": "SKILL.md",
+  "references": [],
+  "triggers": [
+    "cross-link blog posts",
+    "add internal links between articles",
+    "link posts to each other",
+    "link these articles together",
+    "which posts can reference each other",
+    "add links between my articles",
+    "improve blog navigation with links",
+    "find cross-linking opportunities",
+    "add inline links to blog posts",
+    "interlink my posts",
+    "link my blog content together",
+    "add internal links to my blog"
+  ],
+  "tags": [
+    "blog",
+    "internal-linking",
+    "cross-linking",
+    "content-navigation",
+    "markdown-editing"
+  ],
+  "usage": {
+    "prompt": "Glob all markdown posts in the specified folder, read and map each post's subjects and named entities, identify where existing text in one post names the subject of another, present a proposals table for user approval, then apply approved links as precise inline markdown edits — never adding new anchor text or 'See also' sections.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "postsPath": {
+          "type": "string",
+          "description": "Path to the folder containing blog post markdown files."
+        },
+        "urlPattern": {
+          "type": "string",
+          "description": "URL pattern for constructing internal links (e.g. Hugo, Jekyll, or generic). Optional — will be inferred or confirmed with the user."
+        }
+      },
+      "required": ["postsPath"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "proposalsTable": {
+          "type": "string",
+          "description": "Markdown table of proposed links (source file, link text, target post, rationale) shown to the user for approval."
+        },
+        "editedFiles": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of post files modified after user approval."
+        },
+        "linksAdded": {
+          "type": "integer",
+          "description": "Total number of inline links added across all files."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "tools": ["read", "edit", "glob", "grep"],
+    "packages": [],
+    "external": []
+  },
+  "bundled": {
+    "scripts": [],
+    "assets": [],
+    "templates": []
+  }
+}

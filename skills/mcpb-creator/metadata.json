@@ -1,0 +1,104 @@
+{
+  "name": "mcpb-creator",
+  "version": "1.0.0",
+  "description": "Guide for creating Model Context Protocol Bundles (MCPB). Use when users want to build MCP servers as distributable bundles with proper manifest structure, tool definitions, security measures, and best practices.",
+  "license": "MIT",
+  "author": "JJ Halans",
+  "repository": "https://github.com/halans/dotAgents",
+  "languages": ["en"],
+  "compatibility": {
+    "minCliVersion": "0.1.0",
+    "agents": ["claude-code", "cursor", "windsurf", "generic"]
+  },
+  "entryPoint": "SKILL.md",
+  "references": [
+    "references/mcpb-overview.md",
+    "references/manifest-spec.md",
+    "references/implementation-guide.md"
+  ],
+  "triggers": [
+    "create an MCP bundle",
+    "build an MCPB",
+    "make an MCP server bundle",
+    "package an MCP server",
+    "create a distributable MCP server",
+    "build MCP tools",
+    "write an MCP server",
+    "define MCP tools in a manifest",
+    "create manifest.json for MCP",
+    "bundle an MCP server",
+    "new MCPB project",
+    "scaffold an MCP bundle"
+  ],
+  "tags": [
+    "mcp",
+    "mcpb",
+    "mcp-server",
+    "tool-definitions",
+    "json-rpc",
+    "ai-tooling",
+    "bundling"
+  ],
+  "usage": {
+    "prompt": "Guide the user through defining tools, initialising a bundle with init_mcpb.py, writing the manifest.json and server/index.js, applying security measures (path validation, timeouts, input sanitisation), and validating with validate_mcpb.py. Reference references/manifest-spec.md for schema details and references/implementation-guide.md for patterns.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "bundleName": {
+          "type": "string",
+          "description": "Kebab-case name for the new MCPB bundle."
+        },
+        "toolDefinitions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of tool names or descriptions the bundle should expose."
+        },
+        "outputPath": {
+          "type": "string",
+          "description": "Directory where the bundle folder should be created."
+        }
+      },
+      "required": ["bundleName"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "bundleDirectory": {
+          "type": "string",
+          "description": "Path to the created bundle directory."
+        },
+        "manifestPath": {
+          "type": "string",
+          "description": "Path to the generated manifest.json."
+        },
+        "serverPath": {
+          "type": "string",
+          "description": "Path to the generated server/index.js."
+        },
+        "validationResult": {
+          "type": "string",
+          "description": "Output of validate_mcpb.py confirming the bundle is valid."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "tools": ["bash"],
+    "packages": ["node", "npm"],
+    "external": []
+  },
+  "bundled": {
+    "scripts": [
+      "scripts/init_mcpb.py",
+      "scripts/validate_mcpb.py"
+    ],
+    "assets": [
+      "assets/hello-world-node-template/.gitignore",
+      "assets/hello-world-node-template/README.md",
+      "assets/hello-world-node-template/manifest.json",
+      "assets/hello-world-node-template/package.json",
+      "assets/hello-world-node-template/server/index.js"
+    ],
+    "templates": []
+  }
+}
