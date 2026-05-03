@@ -2,6 +2,12 @@
 
 Rewrites text to remove AI-generated linguistic patterns, puffery, and formulaic language — without changing the original meaning.
 
+## How to install
+
+```
+npx skills add halans/dotAgents --skill text-rewriter
+```
+
 ## What it does
 
 - Strips overused AI phrases, hedging language, and filler constructs
