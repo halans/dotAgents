@@ -1,0 +1,29 @@
+{
+  "name": "marketplace-creator",
+  "version": "1.0.0",
+  "description": "Generates a valid Anthropic Claude Code plugin marketplace manifest (.claude-plugin/marketplace.json) from user input or an existing repository layout.",
+  "keywords": [
+    "claude-code",
+    "marketplace",
+    "plugin",
+    "manifest",
+    "distribution",
+    "claude-plugin"
+  ],
+  "usage": {
+    "trigger": "Invoke when the user wants to create, scaffold, or update a Claude Code plugin marketplace, distribute plugins to a team or organization, or needs help with marketplace.json structure or plugin source types.",
+    "examples": [
+      "Create a marketplace.json for our internal Claude plugins",
+      "Add a new plugin to our existing marketplace",
+      "What plugin source type should I use for a monorepo?",
+      "Validate our .claude-plugin/marketplace.json against the spec"
+    ]
+  },
+  "dependencies": [],
+  "input": {
+    "description": "Marketplace name, owner info, and list of plugins with their source locations (repo URLs, paths, npm package names). Optionally an existing marketplace.json to update."
+  },
+  "output": {
+    "description": ".claude-plugin/marketplace.json file with validated JSON. Summary of marketplace name, owner, plugin count, and source types used."
+  }
+}
