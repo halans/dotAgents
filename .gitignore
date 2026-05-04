@@ -1,6 +1,6 @@
 /.DS_Store
 .github
+.env
 /summaries
 .playwright-mcp
-skills/query-confluence/scripts/__pycache__
 agents/article-summarizer/.env
