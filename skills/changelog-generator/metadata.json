@@ -1,0 +1,80 @@
+{
+  "name": "changelog-generator",
+  "version": "1.0.0",
+  "description": "Use when the user wants to generate a changelog, release notes, what's new document, or any summary of recent changes for end users. Trigger when the user says things like \"generate a changelog\", \"write release notes\", \"what changed since the last release\", \"create a CHANGELOG entry\", \"summarize recent git commits for users\", \"write up the changes for v1.2.0\", \"prepare release documentation\", or anything about translating git history into user-facing communication. Also trigger if the user is preparing a GitHub release, writing a What's New page, or asking what went into a release. Use this skill whenever the conversation involves git history and communicating changes to end users.",
+  "license": "MIT",
+  "author": "JJ Halans",
+  "repository": "https://github.com/halans/dotAgents",
+  "languages": ["en"],
+  "compatibility": {
+    "minCliVersion": "0.1.0",
+    "agents": ["claude-code", "cursor", "windsurf", "generic"]
+  },
+  "entryPoint": "SKILL.md",
+  "references": [],
+  "triggers": [
+    "generate a changelog",
+    "write release notes",
+    "what changed since the last release",
+    "create a changelog entry",
+    "summarize recent git commits for users",
+    "write up the changes for v1.2.0",
+    "prepare release documentation",
+    "translate git history into release notes",
+    "what went into this release",
+    "write what's new",
+    "github release notes",
+    "summarize commits for end users"
+  ],
+  "tags": [
+    "changelog",
+    "release-notes",
+    "git-history",
+    "customer-communication",
+    "semantic-versioning"
+  ],
+  "usage": {
+    "prompt": "Determine the commit range (default to last tag..HEAD or use user-specified range), collect commits with --no-merges, categorize changes into Breaking Changes/New Features/Bug Fixes/Improvements, rewrite items in user-facing language, consolidate related commits, and output markdown release notes with only non-empty sections.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "repoPath": {
+          "type": "string",
+          "description": "Path to the git repository to summarize."
+        },
+        "range": {
+          "type": "string",
+          "description": "Optional commit range (for example v1.2.0..HEAD, main..feature, or --since expression)."
+        },
+        "releaseLabel": {
+          "type": "string",
+          "description": "Optional version/date label for the changelog header (for example v1.3.0 or Unreleased)."
+        }
+      },
+      "required": ["repoPath"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "markdown": {
+          "type": "string",
+          "description": "Customer-facing changelog markdown with categorized sections and concise bullet points."
+        },
+        "suggestedVersionBump": {
+          "type": "string",
+          "description": "Optional semantic version bump suggestion based on commit categories (major, minor, or patch)."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "tools": ["bash", "read"],
+    "packages": [],
+    "external": []
+  },
+  "bundled": {
+    "scripts": [],
+    "assets": [],
+    "templates": []
+  }
+}
