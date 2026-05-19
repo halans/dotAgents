@@ -1,0 +1,54 @@
+{
+  "skill_name": "changelog-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hey, I need to write the changelog for our upcoming v1.3.0 release. The project is at /tmp/changelog-test-repos/saas-app — can you generate the changelog from our git history since v1.2.0? We use conventional commits.",
+      "expected_output": "A markdown changelog with sections for New Features (SSO, bulk export, sidebar), Bug Fixes (upload crash, rate limit handling), and Improvements (dashboard performance, axios security update). Test-only commits should be excluded or collapsed. No merge commits. Language should be customer-friendly with no code/class names.",
+      "files": [],
+      "expectations": [
+        "The output contains a '### New Features' section",
+        "The output contains a '### Bug Fixes' section",
+        "The output contains a '### Improvements' section or 'Improvements' heading",
+        "SSO or single sign-on is mentioned in the New Features section",
+        "The bulk export (CSV/Excel) is mentioned in the New Features section",
+        "The file upload crash fix is described without using the words 'null', 'exception', 'NPE', or 'resolve'",
+        "The output does NOT contain a merge commit entry (no 'Merge branch' or 'Merge pull request')",
+        "The output uses the version label 'v1.3.0' or 'Unreleased'",
+        "No class names, function names, or file names appear in the user-facing bullet points"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Write release notes for our latest mobile app update. The project is at /tmp/changelog-test-repos/mobile-app — commits since v1.0.0 please. Our team doesn't use any commit format convention, just writes whatever.",
+      "expected_output": "A markdown changelog covering push notification settings, account-switching crash fix, dark mode expansion, improved search, simplified onboarding, Apple Pay update, password sync fix, and feed performance. Items should be categorized correctly (fixes to Bug Fixes, new capabilities to New Features) despite the free-form commit style.",
+      "files": [],
+      "expectations": [
+        "The output contains categorized sections (New Features, Bug Fixes, or Improvements)",
+        "Push notification preferences appear as a New Feature",
+        "The account-switching crash appears in Bug Fixes",
+        "Dark mode appears in New Features or Improvements",
+        "The password sync issue appears in Bug Fixes",
+        "Each bullet point is written in plain language appropriate for end users",
+        "The output does NOT reproduce raw commit message text verbatim (messages should be rewritten)",
+        "Image loading performance is mentioned in Improvements or similar"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We're cutting v3.0.0 of our TypeScript library today — it has a breaking change where we replaced string errors with typed Error objects. Generate the changelog from /tmp/changelog-test-repos/ts-library since the last tag (v2.3.1).",
+      "expected_output": "A markdown changelog with Breaking Changes first (error type change), New Features (TypeScript types), Bug Fixes (Date serialization, null handling), and possibly Improvements (Node 18 requirement). Breaking Changes section must appear before all other sections.",
+      "files": [],
+      "expectations": [
+        "The output contains a '### Breaking Changes' section",
+        "The Breaking Changes section appears BEFORE New Features and Bug Fixes sections",
+        "The breaking change about error types is clearly described in user-actionable terms",
+        "TypeScript type definitions appear in New Features",
+        "The Date serialization fix appears in Bug Fixes",
+        "The null values fix appears in Bug Fixes",
+        "The output uses 'v3.0.0' as the version label",
+        "The Node.js 18 minimum requirement is mentioned somewhere in the output"
+      ]
+    }
+  ]
+}
